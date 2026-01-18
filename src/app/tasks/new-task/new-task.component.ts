@@ -1,6 +1,7 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, ElementRef, Inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from '../tasks.service';
+import { TaskServiceToken } from '../../../main'
 
 @Component({
   selector: 'app-new-task',
@@ -10,6 +11,7 @@ import { TasksService } from '../tasks.service';
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  
   private formEl = viewChild<ElementRef<HTMLFormElement>>('form');
   // private tasksService: TasksService;
   //way 11
@@ -17,7 +19,7 @@ export class NewTaskComponent {
   //   this.tasksService = tService;
   // }
 
-  constructor(private tasksService: TasksService){ //creates a property with the same name as requested
+  constructor(@Inject(TaskServiceToken) private tasksService: TasksService){ //creates a property with the same name as requested
 
   }
   onAddTask(title: string, description: string) {

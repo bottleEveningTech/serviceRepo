@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { Task, TaskStatus } from '../../task.model';
 import { TasksService } from '../../tasks.service';
+import { TaskServiceToken } from '../../../../main';
 
 @Component({
   selector: 'app-task-item',
@@ -13,7 +14,7 @@ import { TasksService } from '../../tasks.service';
 })
 export class TaskItemComponent {
   task = input.required<Task>();
-  private taskService = inject(TasksService);
+  private taskService = inject(TaskServiceToken);
   taskStatus = computed(() => {
     switch (this.task().status) {
       case 'OPEN':
